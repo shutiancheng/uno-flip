@@ -1,6 +1,6 @@
-# FlipStack
+# UNO Flip — Unofficial Online Adaptation
 
-An original two-player browser card game based on two-sided shedding mechanics. It uses the same architecture as the sibling Hanamikoji project: React, TypeScript, Vite, PeerJS/WebRTC, a host-authoritative game state, private player snapshots, local persistence, Vitest, Playwright, and a static Vercel deployment.
+An unofficial two-player browser adaptation of UNO Flip with original artwork. It uses the same architecture as the sibling Hanamikoji project: React, TypeScript, Vite, PeerJS/WebRTC, a host-authoritative game state, private player snapshots, local persistence, Vitest, Playwright, and a static Vercel deployment.
 
 ## Run locally
 
@@ -29,6 +29,6 @@ No account, database, analytics, or runtime secret is required. The host must ke
 - Round scoring from cards remaining in the opponent's hand; first to 500 wins
 - Rematches, practice bot, invitation links, reconnection, and seat reservation
 
-## Original design
+## Original artwork
 
-FlipStack has original branding, card layouts, palette, and interface artwork. It does not reproduce Mattel card art or claim affiliation with UNO or Mattel. Game mechanics are implemented independently.
+The app uses original card layouts, palette, and interface artwork. It does not reproduce Mattel card art or claim affiliation with Mattel. UNO Flip is a trademark of Mattel; this project is an unofficial fan-made adaptation.

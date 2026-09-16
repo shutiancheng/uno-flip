@@ -26,7 +26,7 @@ function Rules({ close }: { close: () => void }) {
       <div><strong>Night</strong><span>Draw 5 · Skip All · Reverse · Draw Color</span></div>
     </div>
     <h3>Drawing & last card</h3><p>Draw one when you choose not to play. You may play that card immediately if it matches, or keep it and end your turn. Mark the last-card call when playing down to one card—or draw two as a penalty.</p>
-    <p className="legal-note">FlipStack uses original artwork and branding. It is an independent implementation of familiar two-sided shedding-game mechanics and is not affiliated with Mattel.</p>
+    <p className="legal-note">Uno Flip is a trademark of Mattel. This is an unofficial fan-made browser adaptation with original artwork and is not affiliated with or endorsed by Mattel.</p>
   </div></Modal>;
 }
 
@@ -59,7 +59,7 @@ function Landing({ onRules }: { onRules: () => void }) {
     if (match) go(`/room/${match[1]}`);
   };
   return <>
-    <header className="site-header"><a className="brand" href="/"><span className="brand-flip">FLIP</span><span>STACK</span></a><nav><button onClick={onRules}>How to play</button><span className="edition">TWO-SIDED EDITION</span></nav></header>
+    <header className="site-header"><a className="brand" href="/"><span className="brand-flip">UNO</span><span>FLIP</span></a><nav><button onClick={onRules}>How to play</button><span className="edition">UNOFFICIAL ONLINE EDITION</span></nav></header>
     <main className="landing">
       <section className="hero">
         <div className="hero-copy"><div className="eyebrow"><span /> HEADS OR TAILS. DAY OR NIGHT.</div><h1>One deck.<br/><em>Two moods.</em></h1>
@@ -80,7 +80,7 @@ function Landing({ onRules }: { onRules: () => void }) {
       <section className="feature-strip"><div><b>01</b><span><strong>Match & discard</strong>Play by color, number, or symbol.</span></div><div><b>02</b><span><strong>Turn the tables</strong>Flip every card to its other face.</span></div><div><b>03</b><span><strong>Empty your hand</strong>First out scores the round.</span></div></section>
       <div className="landing-note"><span><LockKeyhole /> Private peer-to-peer rooms</span><button onClick={onRules}>Read the full rules <ArrowRight /></button></div>
     </main>
-    <footer><span>FLIPSTACK · ORIGINAL DIGITAL CARD DUEL</span><span>No account. No tracking. Just cards.</span></footer>
+    <footer><span>UNO FLIP · UNOFFICIAL FAN-MADE GAME</span><span>Original artwork · Not affiliated with Mattel</span></footer>
     {joinOpen && <Modal title="Join a room" close={() => setJoinOpen(false)}><div className="join-form"><p>Paste the invite link or room code your friend sent you.</p><input autoFocus value={joinCode} onChange={event => setJoinCode(event.target.value)} placeholder="Invite link or code" onKeyDown={event => { if (event.key === 'Enter') join(); }} /><button className="primary" onClick={join}>Take my seat <ArrowRight /></button></div></Modal>}
   </>;
 }
@@ -102,7 +102,7 @@ function Game({ roomId, practice, name, onRules }: { roomId: string; practice: b
   useEffect(() => { client.start(); return () => client.stop(); }, [client]);
   const invite = `${location.origin}/room/${roomId}`;
   const copy = async () => { await navigator.clipboard.writeText(invite); setCopied(true); setTimeout(() => setCopied(false), 1600); };
-  if (!snap.view) return <div className="game-shell"><header className="game-header"><a href="/" className="back"><ArrowLeft /> Home</a><span className="brand"><span className="brand-flip">FLIP</span>STACK</span></header><div className="connection-screen"><RefreshCw className="spin"/><h2>{snap.status}</h2><p>{snap.error || 'Keep this page open while we find the table.'}</p></div></div>;
+  if (!snap.view) return <div className="game-shell"><header className="game-header"><a href="/" className="back"><ArrowLeft /> Home</a><span className="brand"><span className="brand-flip">UNO</span>FLIP</span></header><div className="connection-screen"><RefreshCw className="spin"/><h2>{snap.status}</h2><p>{snap.error || 'Keep this page open while we find the table.'}</p></div></div>;
   const view = snap.view;
   const me = snap.player, them = other(me), myTurn = view.phase === 'playing' && view.turn === me;
   const top = view.discard[view.discard.length - 1];
@@ -113,7 +113,7 @@ function Game({ roomId, practice, name, onRules }: { roomId: string; practice: b
   };
   const status = view.phase !== 'playing' ? (view.winner === me ? 'You took the round' : `${snap.names[view.winner!]} took the round`) : myTurn ? 'Your move' : `${snap.names[them]} is playing`;
   return <div className={`game-shell side-${view.side}`}>
-    <header className="game-header"><a href="/" className="back"><ArrowLeft /> Home</a><span className="brand"><span className="brand-flip">FLIP</span>STACK</span><button className="rules-button" onClick={onRules}><HelpCircle /> Rules</button></header>
+    <header className="game-header"><a href="/" className="back"><ArrowLeft /> Home</a><span className="brand"><span className="brand-flip">UNO</span>FLIP</span><button className="rules-button" onClick={onRules}><HelpCircle /> Rules</button></header>
     <main className="game-main">
       <div className="table-title"><div><span>PRIVATE ROOM · ROUND {view.round}</span><h1>{practice ? 'Practice duel' : 'Two-player duel'}</h1></div><div className={`live ${snap.connected ? 'online' : ''}`}><i />{snap.status}</div></div>
       {!snap.started && !practice ? <section className="invite-state"><Users /><h2>Your table is ready</h2><p>Send this private link to one friend. The game begins when they arrive.</p><div className="invite-box"><input readOnly value={invite}/><button className="primary" onClick={copy}>{copied ? <Check /> : <Copy />}{copied ? 'Copied' : 'Copy invite'}</button></div><span><LockKeyhole /> The first guest keeps the second seat.</span></section> : <>

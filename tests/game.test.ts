@@ -13,7 +13,7 @@ function stateWith(hand: Card[], top = card('top', 'coral', 3)): State {
   return state;
 }
 
-describe('FlipStack deck', () => {
+describe('UNO Flip deck', () => {
   it('builds 112 paired cards with full color sets', () => {
     const deck = makeDeck(() => 0.37);
     expect(deck).toHaveLength(112);

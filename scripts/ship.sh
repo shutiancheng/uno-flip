@@ -2,7 +2,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-message="${1:-Ship FlipStack}"
+message="${1:-Ship UNO Flip updates}"
 branch="$(git symbolic-ref --quiet --short HEAD)"
 git remote get-url origin >/dev/null
 command -v vercel >/dev/null
